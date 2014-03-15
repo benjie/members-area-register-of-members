@@ -1,0 +1,20 @@
+extends /sidebar
+
+block title
+  | Register of Members Settings
+
+block content
+  h2 Register of Members Settings
+
+  form.form-horizontal(method="POST")
+    .control-group
+      label.control-label(for="memberRoleId") Member role
+      .controls
+        select(id="memberRoleId", name="memberRoleId")
+          each role in roles
+            option(value=role.id, selected=(role.id === data.memberRoleId))= role.name
+
+    .control-group
+      .controls
+        button.btn-success(type="Submit") Save
+

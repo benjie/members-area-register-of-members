@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/benjie/members-area-register-of-members/issues"
   },
-  "homepage": "https://github.com/benjie/members-area-register-of-members"
+  "homepage": "https://github.com/benjie/members-area-register-of-members",
+  "dependencies": {}
 }
