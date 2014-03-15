@@ -1,6 +1,6 @@
 {
   "name": "members-area-register-of-members",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Register of Members plugin for members-area",
   "main": "index.coffee",
   "scripts": {
