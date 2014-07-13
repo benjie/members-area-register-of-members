@@ -1,6 +1,8 @@
 extends /layout
+// Note: to simulate print to PDF in Chrome, a window width of 708px is desired
 
 block everything
+  - var index = {}
   .registerOfMembers
     .letterhead
       img.logo(src="/img/logo.png")
@@ -17,13 +19,26 @@ block everything
         tr
           th.number #
           th.name Name
-          th.approved Approved
+          th.approved(style="width:68px;") Approved
           th.address Address
         each roleUser, i in roleUsers
+          - index[roleUser.user.fullname] = index[roleUser.user.fullname] || []
+          - index[roleUser.user.fullname].push(i+1)
           tr
-            td= i+1
+            td(style="text-align:right;")= i+1
             td= roleUser.user.fullname
             td= formatDate(roleUser.approved)
             td= roleUser.user.address
       .summary Total: #{roleUsers.length} members
+    hr
+    h3 Index
+    - var names = Object.keys(index).sort()
+    table.table
+      tr
+        th Name
+        th Index
+      each name in names
+        tr
+          td= name
+          td= index[name].join(", ")
   script window.print()
