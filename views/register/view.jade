@@ -18,8 +18,9 @@ block everything
               p #{roleUsers.length} members total (#{formatDate(now)} #{pad(now.getHours())}:#{pad(now.getMinutes())})
         tr
           th.number #
-          th.name Name
-          th.approved(style="width:68px;") Approved
+          th.name(style="width: 130px;") Name
+          th.approved(style="width:68px;") Joined
+          th.rejected(style="width:68px;") Left
           th.address Address
         each roleUser, i in roleUsers
           - index[roleUser.user.fullname] = index[roleUser.user.fullname] || []
@@ -28,6 +29,7 @@ block everything
             td(style="text-align:right;")= i+1
             td= roleUser.user.fullname
             td= formatDate(roleUser.approved)
+            td= formatDate(roleUser.rejected)
             td= roleUser.user.address
       .summary Total: #{roleUsers.length} members
     hr
