@@ -33,6 +33,7 @@ module.exports = class RegisterController extends Controller
     @detailsHtml = @plugin.get('detailsHtml') ? defaultDetailsHtml
     @req.models.RoleUser.find()
     .where("role_id = ? AND approved IS NOT NULL", [@plugin.get('memberRoleId') ? 1])
+    .order("approved", "id")
     .run (err, roleUsers) =>
       userIds = []
       @roleUsers = []
