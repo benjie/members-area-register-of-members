@@ -39,11 +39,12 @@ module.exports = class RegisterController extends Controller
       for roleUser in roleUsers when roleUser.user_id not in userIds
         @roleUsers.push roleUser
         userIds.push roleUser.user_id
-      getUser = (roleUser, next) ->
-        roleUser.getUser (err, user) ->
-          roleUser.user = user
-          next(err)
-      @plugin.async.map @roleUsers, getUser, done
+      @req.models.User.find id: userIds, (err, users) =>
+        return done(err) if err
+        usersById = {}
+        usersById[user.id] = user for user in users
+        roleUser.user = usersById[roleUser.user_id] for roleUser in @roleUsers
+        done()
 
   settings: (done) ->
     @data.memberRoleId ?= @plugin.get('memberRoleId') ? 1
