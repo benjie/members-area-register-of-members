@@ -25,7 +25,7 @@ block everything
         each roleUser, i in roleUsers
           - index[roleUser.user.fullname] = index[roleUser.user.fullname] || []
           - index[roleUser.user.fullname].push(i+1)
-          tr
+          tr(style="font-size: 0.9em")
             td(style="text-align:right;")= i+1
             td= roleUser.user.fullname
             td= formatDate(roleUser.approved)
