@@ -34,7 +34,7 @@ block everything
       .summary Total: #{roleUsers.length} members
     hr
     h3 Index
-    - var names = Object.keys(index).sort()
+    - var names = Object.keys(index).sort(function(a, b){return a.toLowerCase().localeCompare(b.toLowerCase())});
     table.table
       tr
         th Name
